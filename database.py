@@ -9,7 +9,7 @@ client = None
 def connect():
     try:
         global client
-        client = InfluxDBClient(host='localhost', port=8086, database="MyTData")
+        client = InfluxDBClient(host='influxdb', port=8086, database="MyTData")
         loggerHelper.getLogger().info("Connected to InfluxDB")
     except:
         loggerHelper.getLogger().info("Error Connecting to InfluxDB")
