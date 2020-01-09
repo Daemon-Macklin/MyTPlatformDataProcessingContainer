@@ -1,16 +1,9 @@
 import pika
 import json
 import threading
-import logging
 import functools
 import time
-
-LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) '
-              '-35s %(lineno) -5d: %(message)s')
-
-LOGGER = logging.getLogger(__name__)
-
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+import loggerHelper
 
 def connect():
     credentials = pika.PlainCredentials('guest', 'guest')
@@ -56,7 +49,7 @@ def handle_message(channel, method, properties, body, args):
 def do_work(connection, channel, delivery_tag, body):
     thread_id = threading.get_ident()
     fmt1 = 'Thread id: {} Delivery tag: {} Message body: {}'
-    LOGGER.info(fmt1.format(thread_id, delivery_tag, body))
+    loggerHelper.getLogger().info(fmt1.format(thread_id, delivery_tag, body))
     time.sleep(5)
     cb = functools.partial(ack_message, channel, delivery_tag)
     connection.add_callback_threadsafe(cb)
