@@ -5,6 +5,7 @@ import functools
 import time
 import loggerHelper
 import database as db
+import dataProcessing as dp
 
 def connect():
     credentials = pika.PlainCredentials('guest', 'guest')
@@ -51,7 +52,11 @@ def do_work(connection, channel, delivery_tag, body):
     thread_id = threading.get_ident()
     fmt1 = 'Thread id: {} Delivery tag: {} Message body: {}'
     loggerHelper.getLogger().info(fmt1.format(thread_id, delivery_tag, body))
+
+    body = json.loads(body)
+    body["data"] = dp.main(body["data"])
     db.writeData(body)
+
     cb = functools.partial(ack_message, channel, delivery_tag)
     connection.add_callback_threadsafe(cb)
 

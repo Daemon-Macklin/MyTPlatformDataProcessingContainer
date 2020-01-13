@@ -16,7 +16,6 @@ def connect():
 
 def writeData(body):
     global client
-    body = json.loads(body)
     json_body = [
     {
         "measurement": body["measurement"],
