@@ -1,14 +1,14 @@
 version: '3'
 services:
-  mongodb:
-    image: mongo
+  influxdb:
+    image: influxdb
     ports:
-      - "27017:27017"
+      - "8086:8086"
     networks:
       - myt-network
-    container_name: mongodb
+    container_name: influxdb
     volumes:
-      - /var/lib/mytDatabase:/var/lib/mongodb
+      - /var/lib/mytDatabase:/var/lib/influxdb
   broker:
     image: rabbitmq
     hostname: rabbitmq
@@ -27,7 +27,7 @@ services:
       - myt-network
     depends_on:
       - broker
-      - mongodb
+      - influxdb
     restart: on-failure
     container_name: dataprocessing
   grafana:
