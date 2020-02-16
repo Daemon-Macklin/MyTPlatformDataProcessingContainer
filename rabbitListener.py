@@ -6,9 +6,15 @@ import time
 import loggerHelper
 import database as db
 import dataProcessing as dp
+import configparser
 
 def connect():
-    credentials = pika.PlainCredentials('guest', 'guest')
+
+    conf = configparser.ConfigParser()
+    conf.read("config.ini")
+    user = conf["rabbitmq"]["user"]
+    password = conf["rabbitmq"]["password"]
+    credentials = pika.PlainCredentials(user, password)
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(host='rabbitmq', credentials=credentials))
 

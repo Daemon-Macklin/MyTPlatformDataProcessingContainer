@@ -10,6 +10,7 @@ ADD rabbitListener.py .
 ADD loggerHelper.py .
 ADD dataProcessing.py .
 ADD requirements.txt .
+ADD config.ini .
 
 RUN pip install -r requirements.txt
 
