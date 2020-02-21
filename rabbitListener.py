@@ -14,9 +14,14 @@ def connect():
     conf.read("config.ini")
     user = conf["rabbitmq"]["user"]
     password = conf["rabbitmq"]["password"]
-    credentials = pika.PlainCredentials(user, password)
-    connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host='rabbitmq', credentials=credentials))
+
+    if user == "" || password = "":
+        connection = pika.BlockingConnection(
+                            pika.ConnectionParameters(host='rabbitmq'))
+    else:
+        credentials = pika.PlainCredentials(user, password)
+        connection = pika.BlockingConnection(
+            pika.ConnectionParameters(host='rabbitmq', credentials=credentials))
 
     channel = connection.channel()
 
