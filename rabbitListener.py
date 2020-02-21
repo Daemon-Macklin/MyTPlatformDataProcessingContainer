@@ -15,7 +15,7 @@ def connect():
     user = conf["rabbitmq"]["user"]
     password = conf["rabbitmq"]["password"]
 
-    if user == "" || password = "":
+    if user == "" or password == "":
         connection = pika.BlockingConnection(
                             pika.ConnectionParameters(host='rabbitmq'))
     else:
