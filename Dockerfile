@@ -4,7 +4,7 @@ RUN mkdir /app
 
 WORKDIR /app
 
-ADD app/* .
+Copy app/ .
 
 RUN pip install -r requirements.txt
 
