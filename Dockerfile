@@ -4,13 +4,7 @@ RUN mkdir /app
 
 WORKDIR /app
 
-ADD main.py .
-ADD database.py .
-ADD rabbitListener.py .
-ADD loggerHelper.py .
-ADD dataProcessing.py .
-ADD requirements.txt .
-ADD config.ini .
+ADD app/* .
 
 RUN pip install -r requirements.txt
 
