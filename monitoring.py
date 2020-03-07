@@ -38,7 +38,7 @@ def data():
 
 def main():
     conf = configparser.ConfigParser()
-    conf.read("config.ini")
+    conf.read("app/config.ini")
     user = conf["rabbitmq"]["user"]
     password = conf["rabbitmq"]["password"]
     tls = conf["rabbitmq"]["tlsenabled"]
