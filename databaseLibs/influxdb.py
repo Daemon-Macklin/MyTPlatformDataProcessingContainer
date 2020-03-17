@@ -1,5 +1,5 @@
 from influxdb import InfluxDBClient
-from datetime import datetime
+import datetime
 import loggerHelper
 import json
 import pprint
@@ -22,7 +22,7 @@ def writeData(body):
         "tags": {
             "device": body["sensor"],
         },
-        "time": datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+        "time": datetime.now(),
         "fields": {
         }
     }
