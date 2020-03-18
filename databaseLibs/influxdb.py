@@ -22,7 +22,7 @@ def writeData(body):
         "tags": {
             "device": body["sensor"],
         },
-        "time": datetime.now(),
+        "time": datetime.datetime.now(),
         "fields": {
         }
     }
