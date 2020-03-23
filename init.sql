@@ -1,9 +1,11 @@
-CREATE DATABASE MyTData;
+CREATE DATABASE IF NOT EXISTS MyTData;
+
+USE MyTData;
 
 CREATE TABLE IF NOT EXISTS SensorData (
-	id SERIAL,
-        ts TIMESTAMP,	
-	temp integer, 
-	pressure integer,
-        PRIMARY KEY (id)	
+        id int(11) NOT NULL AUTO_INCREMENT,
+        ts timestamp NOT NUll,
+        temp int,
+        pressure int,
+        PRIMARY KEY (id)
 );

@@ -8,8 +8,9 @@ client = None
 def connect():
     global client
     try:
-        client = mysql.connector.connect(host="mysqldb", database="MyTData")
-    except:
+        client = mysql.connector.connect(host="mysqldb", user="root", passwd="", database="MyTData")
+    except Exception as e:
+        loggerHelper.getLogger().info(e)
         loggerHelper.getLogger().info("Error Connecting to MySQL")
 
     if client is None:
@@ -27,14 +28,15 @@ def writeData(body):
         varnames = varnames + key + ","
         formatting = formatting + "%s,"
         vals = vals + (value,)
-    varnames = varnames[:-1]
-    formatting = formatting[:-1]
+    varnames = varnames + "ts"
+    formatting = formatting + "%s"
+    vals = vals + (date,)
     loggerHelper.getLogger().info(varnames)
     loggerHelper.getLogger().info(vals)
 
     command = "INSERT INTO SensorData (" + varnames + ") VALUES (" + formatting + ")"
     loggerHelper.getLogger().info(command)
 
-    client.cursor.execute(command, vals)
+    client.cursor().execute(command, vals)
 
     client.commit()

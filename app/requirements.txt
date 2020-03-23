@@ -2,3 +2,4 @@
 pika==1.1.0
 influxdb
 pymongo
+mysql-connector
