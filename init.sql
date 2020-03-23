@@ -1,11 +1,11 @@
-CREATE DATABASE IF NOT EXISTS MyTData;
+CREATE DATABASE MyTData;
 
-USE MyTData;
+\connect mytdata
 
 CREATE TABLE IF NOT EXISTS SensorData (
-        id int(11) NOT NULL AUTO_INCREMENT,
-        ts timestamp NOT NUll,
-        temp int,
-        pressure int,
-        PRIMARY KEY (id)
+        id SERIAL,
+	ts TIMESTAMP,
+	temp integer,
+	pressure integer,
+	PRIMARY KEY (id)
 );

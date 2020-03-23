@@ -1,4 +1,4 @@
-import mysql.connector
+import psycopg2
 import datetime
 import loggerHelper
 import json
@@ -8,13 +8,13 @@ client = None
 def connect():
     global client
     try:
-        client = mysql.connector.connect(host="mysqldb", user="root", passwd="", database="MyTData")
+        client = psycopg2.connect(host="timescaledb", user="postgres", password="postgres", database="mytdata")
     except Exception as e:
         loggerHelper.getLogger().info(e)
-        loggerHelper.getLogger().info("Error Connecting to MySQL")
+        loggerHelper.getLogger().info("Error Connecting to Timescale")
 
     if client is None:
-        loggerHelper.getLogger().info("Error Connecting to MySQL")
+        loggerHelper.getLogger().info("Error Connecting to Timescale")
 
 
 def writeData(body):
@@ -34,7 +34,7 @@ def writeData(body):
     loggerHelper.getLogger().info(varnames)
     loggerHelper.getLogger().info(vals)
 
-    command = "INSERT INTO SensorData (" + varnames + ") VALUES (" + formatting + ")"
+    command = "INSERT INTO sensordata (" + varnames + ") VALUES (" + formatting + ")"
     loggerHelper.getLogger().info(command)
 
     client.cursor().execute(command, vals)
