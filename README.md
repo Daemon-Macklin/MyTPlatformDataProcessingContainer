@@ -21,8 +21,7 @@ docker-compose up
 ```
 
 ### Grafana
-Contains the Docker file for the grafana proxy server. Used for Mongodb platforms.
-
-### MongoProxy
 Contains the Docker file for grafana which adds the grafana proxy servers required plugin.
 
+### MongoProxy
+Contains the Docker file for the grafana proxy server. Used for Mongodb platforms.
